@@ -22,7 +22,7 @@ s:	session ID for participant data
 Runs mriqc for <participant_id> and <session_id> in <bids_dir>
 Output will be placed in <bids_dir>/derivatives/mriqc
 
-Example: `basename $0` -b /path/to/bids_data -p sub-001 -s ses-01
+Example: `basename $0` -b /path/to/bids_data -p 001 -s 01
 " 1>&2; exit 1; }
 
 if [ $# -ne 6 ]; then
@@ -48,18 +48,17 @@ done
 shift $((OPTIND-1))
 
 ## Variables to specify data folders 
-# bids_dir=/data/analysis/maureen/rto/data/bids_data		# bids data directory
 output_dir=$bids_dir/derivatives/mriqc						# mriqc output directory
 log_dir=$bids_dir/derivatives/logs							# directory to save log file 
 
 
 ## Save output from command line to log file
-mriqc_logfile=$log_dir/mriqc_output_${participant_id}_${session_id}_${now}.log
+mriqc_logfile=$log_dir/mriqc_output_sub-${participant_id}_ses-${session_id}_${now}.log
 
 ## Run mriqc-docker and save output to mriqc_logfile
 date > $mriqc_logfile # Overwrite existing log file
 
-echo "Running $0 for $participant_id $session_id" >> $mriqc_logfile
+echo "Running $0 for $bids_dir sub-${participant_id} ses-${session_id}" 2>&1 | tee -a $mriqc_logfile
 echo "docker run -it --rm \
 -v ${bids_dir}:/data:ro \
 -v ${output_dir}:/out \
@@ -70,8 +69,9 @@ nipreps/mriqc:${mriqc_version} \
 --session-id $session_id \
 --nprocs $nprocs \
 --mem $mem \
+--no-sub \
 -w /scratch 2>&1 | tee -a $mriqc_logfile
-" >> $mriqc_logfile
+" 2>&1 | tee -a $mriqc_logfile
 	
 docker run -it --rm \
 	-v ${bids_dir}:/data:ro \
@@ -83,6 +83,7 @@ docker run -it --rm \
 		--session-id $session_id \
 		--nprocs $nprocs \
 		--mem $mem \
+		--no-sub \
 		-w /scratch 2>&1 | tee -a $mriqc_logfile
 
 date >> $mriqc_logfile	
