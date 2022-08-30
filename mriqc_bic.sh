@@ -62,26 +62,28 @@ date > $mriqc_logfile # Overwrite existing log file
 echo "Running $0 for $participant_id $session_id" >> $mriqc_logfile
 echo "docker run -it --rm \
 -v ${bids_dir}:/data:ro \
--v ${output_dir}:/out nipreps/mriqc:${mriqc_version} \
+-v ${output_dir}:/out \
 -v ${work_dir}:/scratch \
+nipreps/mriqc:${mriqc_version} \
 /data /out participant \
---participant_label $participant_id \
---session_id $session_id \
+--participant-label $participant_id \
+--session-id $session_id \
 --nprocs $nprocs \
 --mem $mem \
--w /scratch 2>&1 | tee -a $fmriprep_logfile
+-w /scratch 2>&1 | tee -a $mriqc_logfile
 " >> $mriqc_logfile
 	
 docker run -it --rm \
 	-v ${bids_dir}:/data:ro \
-	-v ${output_dir}:/out nipreps/mriqc:${mriqc_version} \
+	-v ${output_dir}:/out \
 	-v ${work_dir}:/scratch \
-	/data /out participant \
-	--participant_label $participant_id \
-	--session_id $session_id \
-	--nprocs $nprocs \
-	--mem $mem \
-	-w /scratch 2>&1 | tee -a $fmriprep_logfile
+	nipreps/mriqc:${mriqc_version} \
+		/data /out participant \
+		--participant-label $participant_id \
+		--session-id $session_id \
+		--nprocs $nprocs \
+		--mem $mem \
+		-w /scratch 2>&1 | tee -a $mriqc_logfile
 
 date >> $mriqc_logfile	
 
