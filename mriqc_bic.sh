@@ -8,7 +8,7 @@ mriqc_version=22.0.6		# mriqc version to run
 nprocs=10 					# run with 10 cores
 mem=10000					# run with 10GB memory
 work_dir=$HOME/work 		# working directory
-session_id=""				# intialize session id if not specified
+session_id=""				# initialize session id if not specified
 
 
 ## Process command line arguments
@@ -17,7 +17,8 @@ b:	directory with bids compliant data
 p:	bids ID for participant
 s:	optional session ID for participant data
 
-Runs mriqc for <participant_id> and <session_id> in <bids_dir>
+Runs mriqc version ${mriqc_version} for <participant_id> and <session_id> in <bids_dir>
+Temporary files will be stored in $HOME/work
 Output will be placed in <bids_dir>/derivatives/mriqc
 
 Example: `basename $0` -b /path/to/bids_data -p 001 -s 01
