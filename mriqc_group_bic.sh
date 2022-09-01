@@ -42,8 +42,8 @@ date
 now=`date +"%Y%m%d%H%M%S"` 
 
 ## Variables to specify data folders 
-output_dir=$bids_dir/derivatives/mriqc/group				# mriqc output directory
-log_dir=$bids_dir/derivatives/logs							# directory to save log file 
+output_dir=$bids_dir/derivatives/mriqc				# mriqc output directory
+log_dir=$bids_dir/derivatives/logs					# directory to save log file 
 
 
 ## Save output from command line to log file
