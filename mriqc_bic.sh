@@ -24,10 +24,10 @@ Output will be placed in <bids_dir>/derivatives/mriqc
 Example: `basename $0` -b /path/to/bids_data -p 001 -s 01
 " 1>&2; exit 1; }
 
-if [ $# -ne 4 ]; then
+if [ $# -ne 6 ]; then
 	usage
 fi
-	
+
 while getopts "b:p:s:" opt; do
     case "${opt}" in
     	b)
@@ -44,7 +44,7 @@ while getopts "b:p:s:" opt; do
             ;;
     esac
 done
-shift $((OPTIND-1))
+# shift $((OPTIND-1))
 
 date
 now=`date +"%Y%m%d%H%M%S"` 
