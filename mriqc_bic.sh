@@ -4,7 +4,7 @@
 
 
 ## Variables to specify data folders 
-mriqc_version=22.0.6		# mriqc version to run
+mriqc_version=23.1.0		# mriqc version to run
 nprocs=10 					# run with 10 cores
 mem=10000					# run with 10GB memory
 work_dir=$HOME/work 		# working directory
@@ -24,7 +24,7 @@ Output will be placed in <bids_dir>/derivatives/mriqc
 Example: `basename $0` -b /path/to/bids_data -p 001 -s 01
 " 1>&2; exit 1; }
 
-if [ $# -ne 6 ]; then
+if [ $# -ne 4 ]; then
 	usage
 fi
 
