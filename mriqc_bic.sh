@@ -4,11 +4,11 @@
 
 
 ## Variables to specify data folders 
-mriqc_version=22.0.6		# mriqc version to run
-nprocs=10 					# run with 10 cores
-mem=10000					# run with 10GB memory
+mriqc_version=23.1.0		# mriqc version to run
+nprocs=10 			# run with 10 cores
+mem=10000			# run with 10GB memory
 work_dir=$HOME/work 		# working directory
-session_id=""				# initialize session id if not specified
+session_id=""			# initialize session id if not specified
 
 
 ## Process command line arguments
