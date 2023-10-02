@@ -24,7 +24,7 @@ Output will be placed in <bids_dir>/derivatives/mriqc
 Example: `basename $0` -b /path/to/bids_data -p 001 -s 01
 " 1>&2; exit 1; }
 
-if [ $# -gt 6 ]; then
+if [ $# -lt 4 -o $# -gt 6 ]; then
 	usage
 fi
 
