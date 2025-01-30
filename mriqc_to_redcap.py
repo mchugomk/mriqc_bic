@@ -8,7 +8,7 @@ import pandas as pd
 
 # This script reads in json file output from mriqc and converts it to csv format for import into redcap.
 # Currently works for T1w and bold modalities.
-# To use with new project, copy forms from Redcap project 'mriqc template'
+# To use with new Redcap project, copy forms from Redcap project 'mriqc template'
 
 def main(json_filename):
 	try:
